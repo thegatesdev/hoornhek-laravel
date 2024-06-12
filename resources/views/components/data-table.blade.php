@@ -1,12 +1,13 @@
 @props([
-    'fields' => []
+    'fields' => [],
+    'headercls' => ""
 ])
 
-<table>
-    <thead>
-        <tr>
+<table class="w-full">
+    <thead class="{{ $headercls }} pb-4">
+        <tr class="text-left">
             @foreach ($fields as $field)
-                <th>{{ $field }}</th>
+                <th class="p-1.5">{{ $field }}</th>
             @endforeach
         </tr>
     </thead>
