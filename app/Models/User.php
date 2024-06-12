@@ -44,4 +44,8 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+
+    public function guard_key() {
+        return $this->hasOne(GuardKey::class);
+    }
 }
