@@ -16,9 +16,9 @@ return new class extends Migration {
         });
         Schema::table('users', function (Blueprint $table) {
             $table->string('phone_number')->unique();
-            $table->bigInteger('role_id')->unsigned();
+            $table->bigInteger('role_id')->unsigned()->nullable();
             $table->foreign('role_id')->references('id')->on('roles');
-            $table->date('start_date');
+            $table->date('start_date')->nullable();
         });
         Schema::create('guard_keys', function (Blueprint $table) {
             $table->id();
@@ -33,7 +33,8 @@ return new class extends Migration {
      */
     public function down(): void
     {
-        Schema::dropIfExists('roles');
         Schema::dropIfExists('guard_keys');
+        Schema::dropIfExists('users');
+        Schema::dropIfExists('roles');
     }
 };
