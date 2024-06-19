@@ -5,15 +5,21 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class GuardKey extends Model
+class Profile extends Model
 {
     use HasFactory;
 
-    public $timestamps = true;
     protected $fillable = [
-        'key_id',
-        'user_id'
+        'first_name',
+        'last_name',
+        'bsn',
+        'address',
+        'city',
+        'date_of_birth',
+        'place_of_birth',
     ];
+
+    public $timestamps = false;
 
     public function user() {
         return $this->belongsTo(User::class);
