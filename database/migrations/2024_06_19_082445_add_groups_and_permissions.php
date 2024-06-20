@@ -34,7 +34,7 @@ return new class extends Migration
             $table->primary(['group_id', 'permission_id']);
             $table->timestamps();
         });
-        Schema::create('user_group', function (Blueprint $table) {
+        Schema::create('group_user', function (Blueprint $table) {
             $table->bigInteger('user_id')->unsigned();
             $table->bigInteger('group_id')->unsigned();
             
@@ -48,7 +48,7 @@ return new class extends Migration
 
     public function down(): void
     {
-        Schema::dropIfExists('user_group');
+        Schema::dropIfExists('group_user');
         Schema::dropIfExists('group_permission');
         Schema::dropIfExists('permissions');
         Schema::dropIfExists('groups');
