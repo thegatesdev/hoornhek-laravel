@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\CaseModel;
 use App\Models\CasePrisoner;
 use App\Models\CellOccupation;
 use App\Models\Location;
@@ -29,10 +30,20 @@ class DatabaseSeeder extends Seeder
         ]);
 
         $prisoners = Prisoner::factory(40)->create();
+        $cases = CaseModel::factory(35)->create();
+        $cellIdx = 0;
 
         foreach ($prisoners as $prisoner) {
-            // TODO case_prisoner does not need to hold 'cell_occupation_id', it's just a many to many.
-            // TODO make cell_occupations hold 'case_id' instead to link to case
+            $case = $cases->random();
+            $prisoner->cases()->attach($case);
+            if (fake()->boolean(70)) {
+                CellOccupation::factory()->create([
+                    'prisoner_id' => $prisoner,
+                    'location_id' => $location,
+                    'case_id' => $case,
+                    'cell' => $cellIdx++,
+                ]);
+            }
         }
     }
 }

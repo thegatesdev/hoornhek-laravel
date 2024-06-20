@@ -24,7 +24,7 @@ class CaseModel extends Model
 
     public function prisoners(): BelongsToMany
     {
-        return $this->belongsToMany(Prisoner::class);
+        return $this->belongsToMany(Prisoner::class, 'case_prisoner', 'case_id', 'prisoner_id');
     }
 
     public function cell_occupations(): HasMany

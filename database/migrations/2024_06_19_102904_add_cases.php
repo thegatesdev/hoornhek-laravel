@@ -24,6 +24,10 @@ return new class extends Migration
 
             $table->timestamps();
         });
+        Schema::table('cell_occupations', function (Blueprint $table) {
+            $table->unsignedBigInteger('case_id');
+            $table->foreign('case_id')->references('id')->on('cases');
+        });
 
         Schema::create('evidence', function (Blueprint $table) {
             $table->id();
@@ -39,6 +43,10 @@ return new class extends Migration
     public function down(): void
     {
         Schema::dropIfExists('evidence');
+        Schema::table('cell_occupations', function (Blueprint $table) {
+            $table->dropForeign(['case_id']);
+            $table->dropColumn('case_id');
+        });
         Schema::dropIfExists('case_prisoner');
         Schema::dropIfExists('cases');
     }
