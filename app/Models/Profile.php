@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class Profile extends Model
 {
@@ -18,14 +19,16 @@ class Profile extends Model
         'date_of_birth',
         'place_of_birth',
     ];
-
+    
     public $timestamps = false;
 
-    public function user() {
+    public function user(): HasOne
+    {
         return $this->hasOne(User::class);
     }
 
-    public function prisoner() {
+    public function prisoner(): HasOne
+    {
         return $this->hasOne(Prisoner::class);
     }
 }

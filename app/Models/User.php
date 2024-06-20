@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
@@ -14,7 +15,7 @@ class User extends Authenticatable
         'email',
         'password',
     ];
-
+    
     protected $hidden = [
         'password',
         'remember_token',
@@ -30,11 +31,13 @@ class User extends Authenticatable
         ];
     }
 
-    public function profile() {
+    public function profile(): BelongsTo
+    {
         return $this->belongsTo(Profile::class);
     }
 
-    public function location(){
+    public function location(): BelongsTo
+    {
         return $this->belongsTo(Location::class);
     }
 }
