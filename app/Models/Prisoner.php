@@ -24,4 +24,8 @@ class Prisoner extends Model
     public function cell() {
         return null; //return $this->belongsTo(Cell::class);
     }
+
+    public function profile() {
+        return $this->hasOne(Profile::class);
+    }
 }

@@ -22,6 +22,10 @@ class Profile extends Model
     public $timestamps = false;
 
     public function user() {
-        return $this->belongsTo(User::class);
+        return $this->hasOne(User::class);
+    }
+
+    public function prisoner() {
+        return $this->hasOne(Prisoner::class);
     }
 }
