@@ -4,6 +4,8 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 
@@ -18,18 +20,19 @@ class Prisoner extends Model
         "address",
         "city",
     ];
-    
-    public function cases() {
-        return null;//$this->hasMany(Case::class);
+
+    public function cases(): BelongsToMany
+    {
+        return $this->belongsToMany(CaseModel::class);
     }
 
-    public function cell()
+    public function cell_occupations(): HasMany
     {
-        return null; //return $this->belongsTo(Cell::class);
+        return $this->hasMany(CellOccupation::class);
     }
 
-    public function profile(): HasOne
+    public function profile(): BelongsTo
     {
-        return $this->hasOne(Profile::class);
+        return $this->belongsTo(Profile::class);
     }
 }

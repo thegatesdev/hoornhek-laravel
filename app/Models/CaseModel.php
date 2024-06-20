@@ -4,23 +4,27 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
-class Location extends Model
+class CaseModel extends Model
 {
     use HasFactory;
 
+    protected $table = 'cases';
+
     protected $fillable = [
-        'address',
-        'city',
-        'cell_amount',
+        'name',
+        'desciption',
     ];
-    
+
     public $timestamps = true;
 
-    public function users(): HasMany
+
+    public function prisoners(): BelongsToMany
     {
-        return $this->hasMany(User::class);
+        return $this->belongsToMany(Prisoner::class);
     }
 
     public function cell_occupations(): HasMany

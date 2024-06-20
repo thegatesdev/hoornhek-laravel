@@ -21,6 +21,8 @@ return new class extends Migration
             
             $table->unsignedBigInteger('prisoner_id');
             $table->foreign('prisoner_id')->references('id')->on('prisoners');
+            $table->unsignedBigInteger('case_id');
+            $table->foreign('case_id')->references('id')->on('cases');
             
             $table->unsignedInteger('cell');
             $table->unsignedBigInteger('location_id');

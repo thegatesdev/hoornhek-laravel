@@ -22,10 +22,6 @@ return new class extends Migration
             $table->foreignId('prisoner_id');
             $table->foreign('prisoner_id')->references('id')->on('prisoners')->onDelete('cascade');
 
-            $table->dateTime('end_date')->nullable();
-            $table->foreignId('cell_occupation_id')->nullable();
-            $table->foreign('cell_occupation_id')->references('id')->on('cell_occupations')->onDelete('cascade');
-
             $table->timestamps();
         });
 
