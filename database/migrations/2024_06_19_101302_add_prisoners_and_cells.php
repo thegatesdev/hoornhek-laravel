@@ -19,9 +19,6 @@ return new class extends Migration
         Schema::create('cell_occupations', function (Blueprint $table) {
             $table->id();
             
-            $table->unsignedBigInteger('prisoner_id');
-            $table->foreign('prisoner_id')->references('id')->on('prisoners');
-            
             $table->unsignedInteger('cell');
             $table->unsignedBigInteger('location_id');
             $table->foreign('location_id')->references('id')->on('locations');

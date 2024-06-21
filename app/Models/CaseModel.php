@@ -5,8 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
-use Illuminate\Database\Eloquent\Relations\HasMany;
-use Illuminate\Database\Eloquent\Relations\HasOne;
+use Illuminate\Database\Eloquent\Relations\HasManyThrough;
 
 class CaseModel extends Model
 {
@@ -24,11 +23,12 @@ class CaseModel extends Model
 
     public function prisoners(): BelongsToMany
     {
-        return $this->belongsToMany(Prisoner::class, 'case_prisoner', 'case_id', 'prisoner_id');
+        return $this->belongsToMany(Prisoner::class, CasePrisoner::class, 'case_id', 'prisoner_id')
+        ->as('link')->withPivot('reason', 'id')->withTimestamps();
     }
 
-    public function cell_occupations(): HasMany
+    public function cell_occupations(): HasManyThrough
     {
-        return $this->hasMany(CellOccupation::class);
+        return $this->hasManyThrough(CellOccupation::class, CasePrisoner::class, 'case_id', 'case_prisoner_id');
     }
 }

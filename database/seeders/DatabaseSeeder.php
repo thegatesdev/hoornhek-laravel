@@ -35,15 +35,24 @@ class DatabaseSeeder extends Seeder
 
         foreach ($prisoners as $prisoner) {
             $case = $cases->random();
-            $prisoner->cases()->attach($case);
+            $prisoner->cases()->attach($case, ['reason' => fake()->realTextBetween(20, 40)]);
+            $caseId = $prisoner->cases()->first()->link->id;
             if (fake()->boolean(70)) {
                 CellOccupation::factory()->create([
-                    'prisoner_id' => $prisoner,
                     'location_id' => $location,
-                    'case_id' => $case,
+                    'case_prisoner_id' => $caseId,
                     'cell' => $cellIdx++,
                 ]);
             }
+        }
+
+        $randomCase = CaseModel::all()->random();
+        echo "Case {$randomCase->id}" . PHP_EOL;
+        foreach ($randomCase->prisoners as $prisoner) {
+            echo "-> Prisoner {$prisoner->id}" . PHP_EOL;
+        }
+        foreach ($randomCase->cell_occupations as $occupation) {
+            echo "-> Occupation {$occupation->id} in {$occupation->location->city}" . PHP_EOL;
         }
     }
 }

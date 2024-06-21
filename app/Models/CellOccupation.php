@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasOneThrough;
 
 class CellOccupation extends Model
 {
@@ -17,23 +18,19 @@ class CellOccupation extends Model
         'location_id',
         'start_time',
         'end_time',
+        'case_prisoner_id',
     ];
 
     public $timestamps = false;
 
-
-    public function prisoner(): BelongsTo
-    {
-        return $this->belongsTo(Prisoner::class);
-    }
 
     public function location(): BelongsTo
     {
         return $this->belongsTo(Location::class);
     }
 
-    public function case(): BelongsTo
+    public function case(): HasOneThrough
     {
-        return $this->belongsTo(CaseModel::class);
+        return $this->hasOneThrough(CaseModel::class, 'case_prisoner', 'case_id');
     }
 }
