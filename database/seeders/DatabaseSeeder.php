@@ -12,11 +12,6 @@ use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
 {
-    private static function get_used_cell_count(int $max): int
-    {
-        return max(10, $max - fake()->numberBetween(10, $max));
-    }
-
     public function run(): void
     {
         $location = Location::factory()->createOne();
@@ -44,15 +39,6 @@ class DatabaseSeeder extends Seeder
                     'cell' => $cellIdx++,
                 ]);
             }
-        }
-
-        $randomCase = CaseModel::all()->random();
-        echo "Case {$randomCase->id}" . PHP_EOL;
-        foreach ($randomCase->prisoners as $prisoner) {
-            echo "-> Prisoner {$prisoner->id}" . PHP_EOL;
-        }
-        foreach ($randomCase->cell_occupations as $occupation) {
-            echo "-> Occupation {$occupation->id} in {$occupation->location->city}" . PHP_EOL;
         }
     }
 }
