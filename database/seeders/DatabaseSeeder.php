@@ -3,7 +3,6 @@
 namespace Database\Seeders;
 
 use App\Models\CaseModel;
-use App\Models\CasePrisoner;
 use App\Models\CellOccupation;
 use App\Models\Location;
 use App\Models\Prisoner;

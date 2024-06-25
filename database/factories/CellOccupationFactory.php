@@ -2,9 +2,7 @@
 
 namespace Database\Factories;
 
-use App\Models\CaseModel;
 use App\Models\Location;
-use App\Models\Prisoner;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class CellOccupationFactory extends Factory
