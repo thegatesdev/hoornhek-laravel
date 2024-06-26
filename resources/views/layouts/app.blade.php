@@ -16,7 +16,16 @@
     </head>
     <body class="text-white">
         <div class="min-h-screen w-full flex flex-col">
-            {{ $slot }}
+            @include('layouts.navigation')
+
+            <div class="flex-1 flex flex-row">
+                @isset($sidebar)
+                    {{ $sidebar }}
+                @endisset
+                <div class="flex-1">
+                    {{ $slot }}
+                </div>
+            </div>
         </div>
     </body>
 </html>

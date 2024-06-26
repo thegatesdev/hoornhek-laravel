@@ -14,6 +14,7 @@ export default {
             transparent: 'transparent',
             current: 'currentColor',
             'white': '#ffffff',
+            'black': '#000000',
             'brown': {
                 light: '#724E2F',
                 dark: '#5d3621',
@@ -21,10 +22,13 @@ export default {
             'blue': {
                 light: '#333B50',
                 dark: '#1F2237',
+                'pale': '#3B4E75',
+                'pale-light': '#CBD3E3',
             }
         },
         backgroundImage: {
-            'gradient-brown': "linear-gradient(to right, #724E2F, #5d3621);"
+            'gradient-brown': "linear-gradient(to right, #724E2F, #5d3621);",
+            'gradient-blue': "linear-gradient(to right, #333B50, #1F2237);",
         },
         extend: {
             fontFamily: {
