@@ -5,7 +5,7 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('home');
 });
 
 Route::get('/dashboard', function () {
@@ -19,7 +19,7 @@ Route::middleware('auth')->group(function () {
 });
 
 Route::resource('prisoners', PrisonerController::class)
-    ->only(['index', 'store','edit','update','destroy', 'show', 'create'])
+    ->only(['index', 'show'])
     ->middleware(['auth', 'verified']);
 
 require __DIR__.'/auth.php';

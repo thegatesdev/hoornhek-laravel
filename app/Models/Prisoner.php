@@ -7,18 +7,13 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
-use Illuminate\Database\Eloquent\Relations\HasOne;
-
 class Prisoner extends Model
 {
     use HasFactory;
 
     public $timestamps = true;
     protected $fillable = [
-        "bsn",
-        "name",
-        "address",
-        "city",
+        "profile_id",
     ];
 
     public function cases(): BelongsToMany

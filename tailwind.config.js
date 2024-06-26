@@ -1,5 +1,5 @@
-import defaultTheme from 'tailwindcss/defaultTheme';
 import forms from '@tailwindcss/forms';
+import defaultTheme from 'tailwindcss/defaultTheme';
 
 /** @type {import('tailwindcss').Config} */
 export default {
@@ -10,6 +10,22 @@ export default {
     ],
 
     theme: {
+        colors: {
+            transparent: 'transparent',
+            current: 'currentColor',
+            'white': '#ffffff',
+            'brown': {
+                light: '#724E2F',
+                dark: '#5d3621',
+            },
+            'blue': {
+                light: '#333B50',
+                dark: '#1F2237',
+            }
+        },
+        backgroundImage: {
+            'gradient-brown': "linear-gradient(to right, #724E2F, #5d3621);"
+        },
         extend: {
             fontFamily: {
                 sans: ['Figtree', ...defaultTheme.fontFamily.sans],
