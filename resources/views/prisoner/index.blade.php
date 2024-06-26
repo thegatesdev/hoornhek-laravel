@@ -1,6 +1,6 @@
 <x-app-layout>
     <x-slot name="sidebar">
-        <x-sidebar></x-sidebar>
+        <x-sidebar current="prisoners.index"></x-sidebar>
     </x-slot>
 
     <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 space-y-6 py-12">

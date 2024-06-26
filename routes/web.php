@@ -21,5 +21,14 @@ Route::middleware('auth')->group(function () {
 Route::resource('prisoners', PrisonerController::class)
     ->only(['index', 'show'])
     ->middleware(['auth', 'verified']);
+Route::resource('cases', PrisonerController::class)
+    ->only(['index', 'show'])
+    ->middleware(['auth', 'verified']);
+Route::resource('locations', PrisonerController::class)
+    ->only(['index', 'show'])
+    ->middleware(['auth', 'verified']);
+Route::resource('occupations', PrisonerController::class)
+    ->only(['index', 'show'])
+    ->middleware(['auth', 'verified']);
 
 require __DIR__.'/auth.php';
