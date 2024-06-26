@@ -5,7 +5,6 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOneThrough;
 
 class CellOccupation extends Model
@@ -13,7 +12,6 @@ class CellOccupation extends Model
     use HasFactory;
 
     protected $fillable = [
-        'prisoner_id',
         'cell',
         'location_id',
         'start_time',
@@ -31,6 +29,11 @@ class CellOccupation extends Model
 
     public function case(): HasOneThrough
     {
-        return $this->hasOneThrough(CaseModel::class, 'case_prisoner', 'case_id');
+        return $this->hasOneThrough(CaseModel::class, CasePrisoner::class, 'case_id');
+    }
+
+    public function case_prisoner(): BelongsTo
+    {
+        return $this->belongsTo(CasePrisoner::class);
     }
 }

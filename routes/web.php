@@ -1,7 +1,11 @@
 <?php
 
+use App\Http\Controllers\CaseController;
+use App\Http\Controllers\CellOccupationController;
+use App\Http\Controllers\LocationController;
 use App\Http\Controllers\PrisonerController;
 use App\Http\Controllers\ProfileController;
+use App\Models\CellOccupation;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -21,13 +25,13 @@ Route::middleware('auth')->group(function () {
 Route::resource('prisoners', PrisonerController::class)
     ->only(['index', 'show'])
     ->middleware(['auth', 'verified']);
-Route::resource('cases', PrisonerController::class)
+Route::resource('cases', CaseController::class)
     ->only(['index', 'show'])
     ->middleware(['auth', 'verified']);
-Route::resource('locations', PrisonerController::class)
+Route::resource('locations', LocationController::class)
     ->only(['index', 'show'])
     ->middleware(['auth', 'verified']);
-Route::resource('occupations', PrisonerController::class)
+Route::resource('occupations', CellOccupationController::class)
     ->only(['index', 'show'])
     ->middleware(['auth', 'verified']);
 
